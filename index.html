@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Jr — Seu Plano de Negócios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     1. LANDING + LOGIN  (identidade Empresa JR)
+     ============================================================ -->
+<div id="view-auth">
+
+  <header class="jr-topnav">
+    <div class="jr-logo">
+      <img id="jr-logo-top" alt="Empresa JR">
+      <span class="wm"><b>EMPRESA JR</b><span>ADMINISTRAÇÃO UFBA</span></span>
+    </div>
+    <nav>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#como-funciona">Serviços</a>
+      <a href="#quem-somos">Quem somos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="cta" onclick="scrollToLogin()">ACESSAR MEU PLANO</button>
+  </header>
+
+  <section class="jr-hero">
+    <div class="yellow-tab"></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Seu Plano de Negócios deixa de ser um PDF esquecido e passa a <em>responder</em>.</h1>
+        <p>A consultoria da Empresa JR entrega seu Plano de Negócios dentro do Chat Jr: você anexa cada parte do plano, a IA processa o conteúdo e você pergunta o que quiser, em linguagem natural, com a fonte de cada resposta sempre à vista.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>+36 anos</b><span>de mercado</span></div>
+          <div class="hero-stat"><b>+1.500</b><span>projetos executados</span></div>
+          <div class="hero-stat"><b>95% NPS</b><span>promotor</span></div>
+        </div>
+      </div>
+
+      <div class="login-card" id="login-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login" onclick="setAuthTab('login')">Entrar</button>
+          <button class="auth-tab" id="tab-signup" onclick="setAuthTab('signup')">Criar conta</button>
+        </div>
+
+        <div id="auth-login">
+          <h2>Acessar meu plano</h2>
+          <p class="sub">Entre com o e-mail que você cadastrou com a consultoria.</p>
+          <div class="field"><label for="login-email">E-mail</label><input id="login-email" type="email" placeholder="voce@empresa.com" value="ana.silva@nortefit.com.br"></div>
+          <div class="field">
+            <div class="field-row"><label for="login-pass">Senha</label><button class="link-btn" onclick="setAuthTab('forgot')">Esqueci minha senha</button></div>
+            <input id="login-pass" type="password" placeholder="Sua senha" value="••••••••">
+          </div>
+          <button class="btn-lg blue btn" onclick="doLogin()">Entrar no Chat Jr</button>
+          <div class="auth-switch">Ainda não tem acesso? <button class="link-btn" onclick="setAuthTab('signup')">Criar conta</button></div>
+        </div>
+
+        <div id="auth-signup" class="hidden">
+          <h2>Criar conta</h2>
+          <p class="sub">Cadastre-se para consultar o Plano de Negócios da sua empresa.</p>
+          <div class="field"><label>Nome completo</label><input type="text" placeholder="Ana Silva"></div>
+          <div class="field"><label>Empresa</label><input type="text" placeholder="Norte Fit Studios"></div>
+          <div class="field"><label>E-mail</label><input type="email" placeholder="voce@empresa.com"></div>
+          <div class="field"><label>Senha</label><input type="password" placeholder="Crie uma senha"></div>
+          <button class="btn-lg blue btn" onclick="doLogin()">Criar conta e entrar</button>
+          <div class="auth-switch">Já tem conta? <button class="link-btn" onclick="setAuthTab('login')">Entrar</button></div>
+        </div>
+
+        <div id="auth-forgot" class="hidden">
+          <h2>Recuperar senha</h2>
+          <p class="sub">Enviamos um link de redefinição para o seu e-mail cadastrado.</p>
+          <div class="field"><label>E-mail</label><input type="email" placeholder="voce@empresa.com"></div>
+          <button class="btn-lg blue btn" onclick="sendReset()">Enviar link</button>
+          <div class="auth-switch"><button class="link-btn" onclick="setAuthTab('login')">Voltar para o login</button></div>
+        </div>
+
+        <p class="auth-note">Cada conta acessa apenas os dados da própria empresa. Nenhuma informação é compartilhada entre clientes da Empresa JR.</p>
+      </div>
+    </div>
+  </section>
+
+  <svg class="hero-wave" viewBox="0 0 1440 96" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="1440" height="96" fill="#080D69"/>
+    <path d="M0 44C240 98 520 112 760 86 1000 60 1240 20 1440 36V96H0Z" fill="#FFFFFF"/>
+  </svg>
+
+  <section class="jr-how" id="como-funciona">
+    <h2>Como o Chat Jr funciona</h2>
+    <p class="lead">Seu plano é organizado em abas. Cada aba recebe o material que a sustenta, a IA transforma esse material em texto consultável e o chat responde a partir dele.</p>
+    <div class="how-grid">
+      <article class="how-card">
+        <div class="step">Etapa 1</div>
+        <h3>Anexe o material de cada aba</h3>
+        <p>Toda aba do plano — nova ou existente — tem seu próprio campo de PDF e de link para slide, doc ou planilha.</p>
+      </article>
+      <article class="how-card">
+        <div class="step">Etapa 2</div>
+        <h3>Processe com IA</h3>
+        <p>Um clique em "Processar com IA" lê o material anexado e escreve o conteúdo da aba, pronto para leitura e consulta.</p>
+      </article>
+      <article class="how-card">
+        <div class="step">Etapa 3</div>
+        <h3>Pergunte no chat</h3>
+        <p>O chat responde usando somente o que está no seu plano e indica em qual aba a informação foi encontrada.</p>
+      </article>
+      <article class="how-card">
+        <div class="step">Etapa 4</div>
+        <h3>Ajuste quando quiser</h3>
+        <p>Você edita o texto das abas a qualquer momento, e a consultoria acompanha e revisa junto com você.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="jr-foot" id="contato">
+    <div class="inner">
+      <span id="quem-somos">Chat Jr · Empresa JR Administração UFBA — consultoria empresarial desde 1989.</span>
+      <span>contato@empresajr.org · Salvador, BA</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============================================================
+     2. APP
+     ============================================================ -->
+<div id="app" class="hidden">
+  <div class="sidebar-scrim" id="sidebar-scrim" onclick="toggleSidebar(false)"></div>
+  <aside class="sidebar scrollbar-thin" id="sidebar">
+    <div class="sidebar-top">
+      <img id="jr-logo-side" alt="Empresa JR">
+      <span class="sidebar-brand"><b>Chat Jr</b><span>Seu Plano de Negócios</span></span>
+    </div>
+    <div class="sidebar-company">
+      <div class="lbl">Empresa ativa</div>
+      <div class="val" id="active-company">Norte Fit Studios</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">Principal</div>
+      <button class="nav-item active" data-view="dashboard" onclick="go('dashboard')">
+        <svg class="ic" viewBox="0 0 20 20" fill="none"><path d="M3 10.5 10 4l7 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V16h10V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Dashboard
+      </button>
+      <button class="nav-item" data-view="chat" onclick="go('chat')">
+        <svg class="ic" viewBox="0 0 20 20" fill="none"><path d="M3 5.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8l-4 3v-3H5a2 2 0 0 1-2-2v-6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Consultar Plano
+      </button>
+      <button class="nav-item" data-view="plano" onclick="go('plano')">
+        <svg class="ic" viewBox="0 0 20 20" fill="none"><path d="M6 2.5h6l3 3V17a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 5 17V3a.5.5 0 0 1 .5-.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9h5M8 12h5M8 6h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Plano de Negócios
+      </button>
+      <button class="nav-item" data-view="indicadores" onclick="go('indicadores')">
+        <svg class="ic" viewBox="0 0 20 20" fill="none"><path d="M4 16V9M10 16V4M16 16v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Indicadores
+      </button>
+      <button class="nav-item" data-view="config" onclick="go('config')">
+        <svg class="ic" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M10 2.7v1.8M10 15.5v1.8M17.3 10h-1.8M4.5 10H2.7M15.1 4.9l-1.3 1.3M6.2 13.8l-1.3 1.3M15.1 15.1l-1.3-1.3M6.2 6.2 4.9 4.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Configurações
+      </button>
+      <div class="nav-group-label admin-only hidden">Administração</div>
+      <button class="nav-item admin-only hidden" data-view="admin" onclick="go('admin')">
+        <svg class="ic" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="4" width="15" height="12" rx="1.8" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 8h15" stroke="currentColor" stroke-width="1.6"/></svg>
+        Clientes &amp; Planos
+      </button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="role-toggle">
+        <span>Modo administrador</span>
+        <button class="switch" id="admin-switch" onclick="toggleAdmin()" aria-label="Alternar modo administrador"></button>
+      </div>
+      <div class="user-row">
+        <div class="avatar" id="side-avatar">AS</div>
+        <div class="who">
+          <div class="n" id="side-user-name">Ana Silva</div>
+          <div class="r" id="side-user-role">Norte Fit Studios</div>
+        </div>
+        <button class="logout-btn" title="Sair" onclick="doLogout()">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M8 17H4.5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1H8M13.5 14l3.5-4-3.5-4M17 10H7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Abrir menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <div>
+          <div class="page-title" id="page-title">Dashboard</div>
+          <div class="page-crumb" id="page-crumb">Norte Fit Studios</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="ai-badge off" id="ai-badge" title="Estado da conexão com a IA">IA</span>
+        <button class="icon-btn" id="theme-toggle-btn" title="Alternar modo claro e escuro" onclick="toggleTheme()">
+          <svg id="theme-icon-sun" width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.6" stroke="currentColor" stroke-width="1.6"/><path d="M10 2.5v2M10 15.5v2M17.5 10h-2M4.5 10h-2M15.3 4.7l-1.4 1.4M6.1 13.9l-1.4 1.4M15.3 15.3l-1.4-1.4M6.1 6.1 4.7 4.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg id="theme-icon-moon" class="hidden" width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M16.5 12.3A6.8 6.8 0 0 1 7.7 3.5a7 7 0 1 0 8.8 8.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="icon-btn" title="Notificações"><svg width="19" height="19" viewBox="0 0 20 20" fill="none"><path d="M5 8a5 5 0 0 1 10 0c0 3.2 1 4.2 1 4.5H4c0-.3 1-1.3 1-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.3 15a1.7 1.7 0 0 0 3.4 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="avatar" id="top-avatar" style="width:32px;height:32px;font-size:12px;">AS</div>
+      </div>
+    </div>
+
+    <div class="impersonation-bar hidden" id="impersonation-bar">
+      <span>Você está no painel de <b id="imp-client-name">—</b> como consultoria. As alterações que fizer aqui valem para esse cliente.</span>
+      <span class="grow"></span>
+      <button onclick="exitClientWorkspace()">Sair do painel do cliente</button>
+    </div>
+
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     3. TEMPLATES DE VIEW
+     ============================================================ -->
+<template id="tpl-dashboard">
+  <div class="section-head">
+    <h1 id="dash-hello">Olá 👋</h1>
+    <p id="dash-sub">Aqui está o resumo do Plano de Negócios e o que você pode consultar hoje.</p>
+  </div>
+  <div class="stat-grid" id="dash-stats"></div>
+  <div class="card progress-card" id="dash-progress"></div>
+  <div class="card suggest-panel">
+    <h3>O que você gostaria de saber?</h3>
+    <p class="sub">Toque em uma pergunta para abrir o chat com ela preenchida.</p>
+    <div class="suggest-grid" id="dash-suggest"></div>
+  </div>
+</template>
+
+<template id="tpl-chat">
+  <div class="chat-shell">
+    <div class="conv-col">
+      <button class="new-conv-btn" onclick="newConversation()">
+        <svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Nova conversa
+      </button>
+      <div class="conv-search"><input type="text" placeholder="Pesquisar conversas..." oninput="filterConvs(this.value)"></div>
+      <div class="conv-list scrollbar-thin" id="conv-list"></div>
+    </div>
+    <div class="chat-col">
+      <div class="chat-head">
+        <h2>Assistente do Plano de Negócios</h2>
+        <p id="chat-head-sub">Responde a partir das abas processadas do seu plano.</p>
+      </div>
+      <div class="chat-thread scrollbar-thin" id="chat-thread"></div>
+      <div class="chat-input-wrap">
+        <div class="chat-input-box">
+          <textarea id="chat-input" rows="1" placeholder="Pergunte qualquer coisa sobre seu Plano de Negócios..." oninput="autoGrow(this)" onkeydown="handleChatKey(event)"></textarea>
+          <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Enviar">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 10h13M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="chat-input-hint">Enter envia · Shift + Enter quebra a linha</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-plano">
+  <div class="section-head">
+    <h1>Plano de Negócios</h1>
+    <p>Cada aba tem seu próprio anexo. Envie o PDF ou o link daquela parte do plano, clique em "Processar com IA" e o texto da aba é escrito a partir do material enviado.</p>
+  </div>
+  <div class="card attach-panel" id="attach-panel"></div>
+  <div class="plan-search">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/><path d="m17 17-3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input type="text" id="plan-search-input" placeholder="Pesquisar no plano (ex: margem, CAC, concorrentes, TIR, payback)" oninput="planSearch(this.value)">
+  </div>
+  <div class="plan-shell">
+    <div class="card plan-cat-list" id="plan-cat-list"></div>
+    <div id="plan-content-wrap"></div>
+  </div>
+</template>
+
+<template id="tpl-indicadores">
+  <div class="section-head" style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div>
+      <h1>Indicadores</h1>
+      <p>Como o plano está sendo consultado e quais abas concentram as perguntas.</p>
+    </div>
+    <div class="pill blue"><span class="ind-live-dot"></span><span id="ind-last-updated">Atualizado agora</span></div>
+  </div>
+  <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="card stat-card"><div class="label">Consultas no mês</div><div class="value" id="ind-consultas">0</div><div class="sub" id="ind-consultas-sub">—</div></div>
+    <div class="card stat-card"><div class="label">Abas processadas</div><div class="value" id="ind-abas">0</div><div class="sub" id="ind-abas-sub">—</div></div>
+    <div class="card stat-card with-donut"><div id="ind-fonte-donut"></div><div><div class="label">Respostas com fonte encontrada</div><div class="value" id="ind-fonte">0</div><div class="sub" id="ind-fonte-sub">—</div></div></div>
+  </div>
+  <div class="ind-grid">
+    <div class="card" style="padding:22px 24px;">
+      <h3 style="font-size:16px;font-weight:900;margin:0 0 18px;">Abas mais consultadas</h3>
+      <div id="ind-bars"></div>
+    </div>
+    <div class="card" style="padding:22px 24px;">
+      <h3 style="font-size:16px;font-weight:900;margin:0 0 8px;">Perguntas mais frequentes</h3>
+      <div id="ind-faq"></div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-config">
+  <div class="section-head">
+    <h1>Configurações</h1>
+    <p>Gerencie sua conta, a empresa e como o assistente se comporta.</p>
+  </div>
+  <div class="settings-grid">
+    <div class="card settings-card">
+      <h3>Inteligência artificial</h3>
+      <p class="d">O processamento das abas e as respostas do chat usam a API da Anthropic. Dentro do Chat Jr a conexão é automática; em uma instalação própria, informe a chave da sua conta.</p>
+      <div class="toggle-row" style="padding-top:0;">
+        <div><div class="t">Estado da conexão</div><div class="d2" id="cfg-ai-state">Verificando...</div></div>
+        <button class="btn" onclick="testAI()">Testar conexão</button>
+      </div>
+      <div class="field" style="margin-top:16px;">
+        <label for="cfg-api-key">Chave da API</label>
+        <input id="cfg-api-key" type="password" placeholder="sk-ant-..." oninput="setApiKey(this.value)">
+        <div class="help">Fica só neste navegador e é enviada apenas para a API da Anthropic. Sem chave, o Chat Jr lê o PDF localmente.</div>
+      </div>
+      <div class="field" style="margin-bottom:0;">
+        <label for="cfg-model">Modelo</label>
+        <select id="cfg-model" onchange="setModel(this.value)">
+          <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — equilíbrio entre custo e qualidade</option>
+          <option value="claude-opus-4-1">Claude Opus 4.1 — análises mais longas</option>
+          <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 — respostas mais rápidas</option>
+        </select>
+      </div>
+    </div>
+    <div class="card settings-card">
+      <h3>Perfil</h3>
+      <p class="d">Suas informações de acesso.</p>
+      <div class="field"><label>Nome</label><input type="text" id="cfg-name" value=""></div>
+      <div class="field"><label>E-mail</label><input type="email" id="cfg-email" value=""></div>
+      <button class="btn blue" onclick="saveProfile()">Salvar alterações</button>
+    </div>
+    <div class="card settings-card">
+      <h3>Empresa</h3>
+      <p class="d">Dados da empresa vinculada à conta.</p>
+      <div class="field"><label>Nome da empresa</label><input type="text" id="cfg-company" value=""></div>
+      <div class="field"><label>Segmento</label><input type="text" id="cfg-segment" value=""></div>
+      <button class="btn blue" onclick="saveCompany()">Salvar dados da empresa</button>
+    </div>
+    <div class="card settings-card">
+      <h3>Dados deste navegador</h3>
+      <p class="d">O plano, as abas processadas e as conversas ficam guardados aqui, neste navegador. Nada sobe para um servidor.</p>
+      <div class="toggle-row" style="padding-top:0;">
+        <div><div class="t">Espaço em uso</div><div class="d2" id="cfg-storage">—</div></div>
+        <button class="btn" onclick="exportData()">Baixar cópia</button>
+      </div>
+      <div class="toggle-row">
+        <div><div class="t">Restaurar de um arquivo</div><div class="d2">Carrega uma cópia baixada antes, ou de outro computador</div></div>
+        <button class="btn" onclick="document.getElementById('import-file').click()">Escolher arquivo</button>
+      </div>
+      <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(this)">
+      <div class="toggle-row">
+        <div><div class="t">Recomeçar do zero</div><div class="d2">Apaga tudo e volta ao plano de demonstração</div></div>
+        <button class="btn danger" onclick="resetData()">Apagar dados</button>
+      </div>
+    </div>
+    <div class="card settings-card">
+      <h3>Aparência</h3>
+      <p class="d">Escolha como a interface é exibida.</p>
+      <div class="toggle-row">
+        <div><div class="t">Modo escuro</div><div class="d2">Alterna as cores entre claro e escuro</div></div>
+        <button class="switch light" id="theme-settings-switch" onclick="toggleTheme()" aria-label="Alternar modo escuro"></button>
+      </div>
+      <div class="toggle-row">
+        <div><div class="t">Avisar quando uma aba for processada</div><div class="d2">Mostra uma confirmação ao fim do processamento</div></div>
+        <button class="switch light on" onclick="this.classList.toggle('on')" aria-label="Alternar aviso"></button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-admin">
+  <div class="section-head" style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div>
+      <h1>Clientes &amp; Planos</h1>
+      <p>Abra o painel de um cliente para editar as abas, anexar material e processar o plano no lugar dele. Tudo o que você alterar fica salvo no plano desse cliente.</p>
+    </div>
+    <button class="btn blue" onclick="openNewClient()">+ Novo cliente</button>
+  </div>
+  <div class="card admin-table-wrap">
+    <table class="admin-table">
+      <thead><tr><th>Cliente</th><th>Empresa</th><th>Plano</th><th>Abas</th><th>Última atualização</th><th>Consultas</th><th>Status</th><th></th></tr></thead>
+      <tbody id="admin-tbody"></tbody>
+    </table>
+  </div>
+</template>
+
+<!-- ============================================================
+     4. MODAIS
+     ============================================================ -->
+<div class="modal-overlay hidden" id="new-client-modal">
+  <div class="modal">
+    <h3>Novo cliente</h3>
+    <p class="d">Cadastre o cliente e a empresa. O plano nasce com as abas padrão, prontas para receber os anexos.</p>
+    <div class="field"><label>Nome do responsável</label><input type="text" id="nc-name" placeholder="Ex: Rafael Matos"></div>
+    <div class="field"><label>E-mail</label><input type="email" id="nc-email" placeholder="rafael@empresa.com"></div>
+    <div class="field"><label>Nome da empresa</label><input type="text" id="nc-company" placeholder="Ex: Cafeteria Grão &amp; Cia"></div>
+    <div class="field"><label>Segmento</label><input type="text" id="nc-segment" placeholder="Ex: Alimentação"></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('new-client-modal')">Cancelar</button>
+      <button class="btn blue" onclick="createClient()">Cadastrar cliente</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="client-access-modal">
+  <div class="modal wide">
+    <h3 id="access-modal-title">Cliente</h3>
+    <p class="d" id="access-modal-sub">—</p>
+    <div class="access-tabs">
+      <button class="access-tab active" id="access-tab-login" onclick="setAccessTab('login')">Acesso &amp; login</button>
+      <button class="access-tab" id="access-tab-scope" onclick="setAccessTab('scope')">Abas liberadas</button>
+    </div>
+    <div id="access-modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('client-access-modal')">Fechar</button>
+      <button class="btn blue" onclick="closeModal('client-access-modal')">Salvar alterações</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="tab-modal">
+  <div class="modal">
+    <h3 id="tab-modal-title">Nova aba</h3>
+    <p class="d" id="tab-modal-sub">Crie uma aba no plano.</p>
+    <div class="field"><label for="tab-name-input">Nome da aba</label><input type="text" id="tab-name-input" placeholder="Ex: Análise Competitiva"></div>
+    <div class="field">
+      <label for="tab-content-input">Conteúdo (opcional)</label>
+      <textarea id="tab-content-input" rows="5" placeholder="Escreva o conteúdo, ou deixe em branco e anexe um PDF ou link depois."></textarea>
+      <div class="help">Se deixar em branco, a aba já aparece com o campo de anexo pronto para receber o PDF ou o link.</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal('tab-modal')">Cancelar</button>
+      <button class="btn blue" onclick="saveTabModal()">Salvar aba</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts da aplicação -->
+<script src="js/app.js"></script>
+</body>
+</html>

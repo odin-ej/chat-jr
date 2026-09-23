@@ -1,0 +1,13 @@
+{
+  "name": "chat-jr",
+  "version": "1.0.0",
+  "description": "Chat Jr — consulta ao Plano de Negócios da Empresa JR usando Claude (Anthropic).",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes http-server -c-1 -p 8080 ./",
+    "dev": "npx --yes http-server -c-1 -p 8080 ./"
+  },
+  "keywords": ["empresa-jr", "plano-de-negocios", "claude", "anthropic"],
+  "author": "Empresa JR Administração UFBA",
+  "license": "UNLICENSED"
+}
